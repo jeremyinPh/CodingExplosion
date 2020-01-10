@@ -22,6 +22,7 @@
         android:hint=" pls input your password"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintLeft_toLeftOf="parent"
+        android:inputType="textPassword"
         app:layout_constraintRight_toRightOf="parent" />
 
     <Button
