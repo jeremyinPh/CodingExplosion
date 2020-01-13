@@ -29,7 +29,7 @@ import com.google.samples.apps.sunflower.data.GardenPlantingDao
 import com.google.samples.apps.sunflower.data.PlantDao
 
 /**
- * The Room database for this app
+ *  用WorkManager来初始化
  */
 @Database(entities = [GardenPlanting::class, Plant::class], version = 1, exportSchema = false)
 @TypeConverters(Converters::class)
