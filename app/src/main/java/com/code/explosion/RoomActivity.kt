@@ -20,6 +20,7 @@ class RoomActivity : AppCompatActivity() {
             PlantRepository.getInstance(AppDatabase.getInstance(applicationContext).plantDao())
         Log.e("jeremy", "ccc")
         val list: List<Plant>? = res.getPlants().value
+        Log.d("jeremy", " size of list: " + list?.size)
         list?.forEach {
             Log.e("jeremy", it.toString())
         }
