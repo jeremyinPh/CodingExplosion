@@ -32,13 +32,14 @@ class SeedDatabaseWorker(
     workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {
     override suspend fun doWork(): Result = coroutineScope {
+            Log.e(TAG, "SeedDatabaseWorker doWork")
         try {
             // .use 实现了 Closeable 接口 会自动关闭调用者 用于IO操作
             applicationContext.assets.open(PLANT_DATA_FILENAME).use { inputStream ->
                 JsonReader(inputStream.reader()).use { jsonReader ->
                     val plantType = object : TypeToken<List<Plant>>() {}.type
                     val plantList: List<Plant> = Gson().fromJson(jsonReader, plantType)
-
+                    Log.e(TAG, "init db success")
                     val database = AppDatabase.getInstance(applicationContext)
                     database.plantDao().insertAll(plantList)
 

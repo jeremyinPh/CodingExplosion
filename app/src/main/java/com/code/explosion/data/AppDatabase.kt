@@ -17,6 +17,7 @@
 package com.code.explosion.data
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -31,7 +32,7 @@ import com.google.samples.apps.sunflower.data.PlantDao
 /**
  *  用WorkManager来初始化
  */
-@Database(entities = [GardenPlanting::class, Plant::class], version = 1, exportSchema = false)
+@Database(entities = [GardenPlanting::class, Plant::class], version = 2, exportSchema = false)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun gardenPlantingDao(): GardenPlantingDao
@@ -51,10 +52,12 @@ abstract class AppDatabase : RoomDatabase() {
         // Create and pre-populate the database. See this article for more details:
         // https://medium.com/google-developers/7-pro-tips-for-room-fbadea4bfbd1#4785
         private fun buildDatabase(context: Context): AppDatabase {
+            Log.e("jeremy", "buildDatabase")
             return Room.databaseBuilder(context, AppDatabase::class.java, DATABASE_NAME)
                     .addCallback(object : RoomDatabase.Callback() {
                         override fun onCreate(db: SupportSQLiteDatabase) {
                             super.onCreate(db)
+                            Log.e("jeremy", "Room onCreate start WorkManager")
                             val request = OneTimeWorkRequestBuilder<SeedDatabaseWorker>().build()
                             WorkManager.getInstance(context).enqueue(request)
                         }
