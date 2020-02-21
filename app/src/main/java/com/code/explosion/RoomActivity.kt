@@ -5,10 +5,7 @@ import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
 import com.code.explosion.data.AppDatabase
-import com.code.explosion.data.SeedDatabaseWorker
 import com.google.samples.apps.sunflower.data.PlantRepository
 
 class RoomActivity : AppCompatActivity() {
@@ -27,5 +24,4 @@ class RoomActivity : AppCompatActivity() {
             }
         }
     }
-
 }
